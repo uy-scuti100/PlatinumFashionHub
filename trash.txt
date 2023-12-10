@@ -1,0 +1,91 @@
+ const carousel = [
+      {
+         img: "/andres-jasso-PqbL_mxmaUE-unsplash.jpg",
+         text: "slider 1",
+      },
+      {
+         img: "/arno-senoner-oCXVxwTFwqE-unsplash.jpg",
+         text: "slider 2",
+      },
+      {
+         img: "/slider2.jpg",
+         text: "slider 3",
+      },
+      {
+         img: "/slider3.jpg",
+         text: "slider 4",
+      },
+      {
+         img: "/slider4.jpg",
+         text: "slider 5",
+      },
+      {
+         img: "/5701f61d78d5391b5018196334637925.jpg",
+         text: "slider 6",
+      },
+
+
+
+      "use client";
+
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { FiMenu, FiShoppingBag } from "react-icons/fi";
+import SearchForm from "./searchForm";
+import { Cart } from "./cart";
+
+export default function Navbar() {
+   const mobileImageSrc = "/logo1.png";
+   const largeScreenImageSrc = "/logo1.png";
+   // const isMobile = window.innerWidth < 600; // You can adjust the threshold for mobile screens
+
+   // Set the image source based on the screen width
+   const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
+   const imageSrc = isMobile ? mobileImageSrc : largeScreenImageSrc;
+
+   useEffect(() => {
+      const handleResize = () => {
+         setIsMobile(window.innerWidth < 600);
+      };
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+         window.removeEventListener("resize", handleResize);
+      };
+   }, []);
+
+   return (
+      <nav className="fixed pb-6 w-full top-0 z-40">
+         <div className="bg-black w-full mb-4 text-center text-white py-2 text-xs">
+            <p>FREE DELIVERY AVAILABLE ON ORDERS above #50,000</p>
+         </div>
+         <div className="container mx-auto">
+            <div className="flex flex-row gap-4 items-center justify-between mb-4 xl:mb-0">
+               {/* menu */}
+               <div className="text-3xl xl:hidden cursor-pointer">
+                  <FiMenu />
+               </div>
+
+               <Link href="/">
+                  <img src={imageSrc} alt="Logo" className="w-[200px]" />
+               </Link>
+               {/* searchform for desktop only */}
+               <div className="hidden w-full xl:flex xl:max-w-[734px] ">
+                  <SearchForm />
+               </div>
+               <div className="flex items-center gap-x-[10px]">
+                  {/* cart icon */}
+                  <div>
+                     <Cart />
+                  </div>
+               </div>
+            </div>
+            {/* search form for mobile only*/}
+            <div className="xl:hidden">
+               <SearchForm />
+            </div>
+         </div>
+      </nav>
+   );
+}
