@@ -1,51 +1,68 @@
-
-type ProductType =
-    | 'T-Shirts/Polo'
-    | 'Trousers'
-    | 'Hoodies'
-    | 'Denim Jackets'
-    | 'Two Piece'
-    | 'Shoes'
-    | 'Shorts'
-    | 'Jewelleries'
-    | 'Accessories'
-    | 'Gowns'
-    | 'Two Piece (Up and Down)'
-    | 'Lingerie'
-    | 'Bikini'
-    | 'Bags';
-type AccessoryType = 'Belts' | 'Watches' | 'Ring Light' | 'Press-On-Nails' | 'Others';
-
-type ShoeType = 'Sneakers' | 'Slides' | 'Heels' | 'Sandals' | 'Slippers' | 'Shoes';
-
-type BagSize = 'Small' | 'Medium' | 'Large';
-
-type GenderType = 'Male' | 'Female' | 'Unisex';
 export interface Product {
-    _id: string;
+    _id?: string;
     name: string;
-    gender: GenderType;
-    type: ProductType;
-    slug: {
-        current: string;
-    };
-    description: string;
-    images: {
-        alt: string;
-        asset: {
-            _ref: string;
-        };
-    }[];
+    slug: string;
+    gender: "Male" | "Female" | "Unisex";
+    description?: string;
+    images: Image[];
     price: number;
-    clotheSize?: string[] | null;
-    accessorySize?: string | null;
-    shoeSize?: number[] | null;
-    bagSize?: BagSize[] | null;
-    color?: string[] | null;
-    accessoryType?: AccessoryType[] | null;
-    shoeType?: ShoeType[] | null;
+    categories: "Clothings" | "Shoes" | "Bags" | "Accessories";
+    shoeTypes?: ShoeTypeReference[];
+    bagTypes?: BagTypeReference[];
+    clotheTypes?: ClotheTypeReference[];
+    accessoryTypes?: AccessoryTypeReference[];
+    clotheSizes?: ClotheSize[];
+    ShoeSizes?: ShoeSize[];
+    BagSizes?: BagSize[];
+    accessorySizes?: AccessorySize[];
+    colors: ColorReference[];
     isNew: boolean;
     onSale: boolean;
+    inStock: boolean;
     discountedPrice?: number;
+    _createdAt: any
 
 }
+
+type AccessorySize = {
+    _id: string;
+    name: string;
+};
+type ClotheSize = {
+    _id: string;
+    name: string;
+};
+type ShoeSize = {
+    _id: string;
+    name: string;
+};
+type BagSize = {
+    _id: string;
+    name: string;
+};
+type ShoeTypeReference = {
+    _id: string;
+    name: string;
+};
+
+type BagTypeReference = {
+    _id: string;
+    name: string;
+};
+
+type ClotheTypeReference = {
+    _id: string;
+    name: string;
+};
+
+type AccessoryTypeReference = {
+    _id: string;
+    name: string;
+};
+
+type ColorReference = {
+    _id: string;
+    value: string
+    name: string;
+    _type: 'color';
+};

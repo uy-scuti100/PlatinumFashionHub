@@ -20,6 +20,7 @@ export function Cart({
    isAboveLimit: boolean;
    pathname: string;
 }) {
+   const CartCount = 0;
    return (
       <Sheet>
          <SheetTrigger asChild>
@@ -33,9 +34,11 @@ export function Cart({
                   )}
                />
                {/* cart count */}
-               <div className="bg-custom p-2 text-white absolute w-[18px] h-[18px] rounded-full top-3 -right-1 text-[13px] flex justify-center items-center font-bold tracking-[-0.1em]">
-                  0
-               </div>
+               {CartCount > 0 && (
+                  <div className="bg-custom p-2 text-white absolute w-[18px] h-[18px] rounded-full top-3 -right-1 text-[13px] flex justify-center items-center font-bold tracking-[-0.1em]">
+                     {CartCount}
+                  </div>
+               )}
             </div>
          </SheetTrigger>
          <SheetContent>

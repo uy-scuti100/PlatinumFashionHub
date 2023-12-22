@@ -2,6 +2,8 @@ import { createClient } from "next-sanity";
 
 import createImageUrlBuilder from "@sanity/image-url";
 
+import type { Image } from 'sanity'
+
 
 
 export const client = createClient({
@@ -12,4 +14,18 @@ export const client = createClient({
     useCdn: true,
 })
 
-export const urlFor = (source: any) => createImageUrlBuilder(client).image(source)
+
+
+const imageBuilder = createImageUrlBuilder({
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "",
+    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "",
+})
+
+export const urlFor = (source: Image) => {
+    return imageBuilder?.image(source).auto('format').fit('max')
+}
+
+
+// export const urlForImage = (source: Image) => {
+//     return imageBuilder?.image(source).auto('format').fit('max')
+// }

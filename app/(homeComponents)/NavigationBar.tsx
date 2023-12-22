@@ -28,7 +28,7 @@ import access1 from "/public/necklace.jpg";
 import access2 from "/public/ringlight.jpg";
 import access3 from "/public/nails.jpg";
 
-export function NavigationMenuDemo() {
+export function Navigation() {
    return (
       <NavigationMenu>
          <NavigationMenuList>

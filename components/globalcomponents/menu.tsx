@@ -51,7 +51,7 @@ export default function Menu({
                      alt="logo"
                      width={300}
                      height={300}
-                     className="h-[80px] w-[300px]"
+                     className="h-[65px] w-[300px]"
                   />
                </SheetTitle>
                <SheetDescription className="font-bold uppercase p-2">
@@ -140,7 +140,9 @@ export default function Menu({
                      </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-4">
-                     <AccordionTrigger>ACESSSORIES</AccordionTrigger>
+                     <AccordionTrigger>
+                        <Link href={"/accessories"}>ACESSSORIES</Link>
+                     </AccordionTrigger>
                      <AccordionContent>
                         <ul className="flex flex-col gap-3 pl-5">
                            <Link href="/" className="pb-2">

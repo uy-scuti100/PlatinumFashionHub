@@ -1,5 +1,11 @@
+"use client";
 import { urlFor } from "@/utils/sanity/client";
 import Image from "next/image";
+import { useState } from "react";
+
+function cn(...classes: string[]) {
+   return classes.filter(Boolean).join(" ");
+}
 
 interface ImageProviderProps {
    image: any;
@@ -8,6 +14,8 @@ interface ImageProviderProps {
    height?: number;
    className?: string;
    fill?: boolean;
+   placeholder?: string;
+   style?: any;
 }
 
 export default function ImageProvider({
@@ -17,19 +25,31 @@ export default function ImageProvider({
    height,
    className,
    fill,
+   style,
 }: ImageProviderProps) {
+   const [isLoading, setLoading] = useState(true);
    return (
-      <Image
-         src={urlFor(image).url()!}
-         alt={alt}
-         width={width}
-         height={height}
-         className={className}
-         fill={fill}
-         sizes="(max-width: 480px) 100vw,
-         (max-width: 768px) 75vw,
-         (max-width: 1060px) 50vw,
-         33vw"
-      />
+      <div className={`relative`}>
+         <Image
+            src={urlFor(image).url()!}
+            alt={alt}
+            style={style}
+            width={width}
+            height={height}
+            fill={fill}
+            className={
+               cn(
+                  "duration-700 ease-in-out",
+                  isLoading
+                     ? "grayscale blur-2xl scale-110"
+                     : "grayscale-0 blur-0 scale-100"
+               ) +
+               " " +
+               className
+            }
+            onLoad={() => setLoading(false)}
+            sizes="(max-width: 480px) 100vw, (max-width: 768px) 85vw, (max-width: 1060px) 75vw, 60vw"
+         />
+      </div>
    );
 }

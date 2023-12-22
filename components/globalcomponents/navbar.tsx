@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import SearchForm from "./searchForm";
 import { Cart } from "./cart";
 import Menu from "./menu";
-import { NavigationMenuDemo } from "@/app/(homeComponents)/NavigationBar";
+import { Navigation } from "@/app/(homeComponents)/NavigationBar";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
@@ -41,8 +41,8 @@ export default function Navbar() {
             <p>FREE DELIVERY AVAILABLE ON ORDERS above #50,000</p>
          </div>
          <div
-            className={`container mx-auto xl:pt-10 xl:pb-5 xl:border-b ${
-               isAboveLimit
+            className={`container mx-auto pt-5 xl:pt-10 xl:pb-5 xl:border-b ${
+               isAboveLimit && pathname === "/"
                   ? "bg-white duration-700 transition-colors ease-in-out border border-b"
                   : pathname !== "/"
                   ? "bg-white duration-700 transition-colors ease-in-out"
@@ -69,7 +69,7 @@ export default function Navbar() {
                </div>
             </div>
             <div className="hidden xl:flex">
-               <NavigationMenuDemo />
+               <Navigation />
             </div>
             {/* search form for mobile only*/}
             <div className="xl:hidden pb-5">

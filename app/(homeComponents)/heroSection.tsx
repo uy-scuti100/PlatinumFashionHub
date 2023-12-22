@@ -1,10 +1,10 @@
 "use client";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import ArrowLeft from "@/providers/Icons/ArrowLeft";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { FiArrowLeft, FiArrowLeftCircle, FiArrowRight } from "react-icons/fi";
+// import { FiArrowLeft, FiArrowLeftCircle, FiArrowRight } from "react-icons/fi";
 
 export default function HeroSection() {
    const [currentSlide, setCurrentSlide] = useState(0);
@@ -18,7 +18,7 @@ export default function HeroSection() {
    };
    const carousel = [
       {
-         img: "/slider4.jpg",
+         img: "/slider41.jpg",
          text: "our beautiful 2 piece",
       },
       {
